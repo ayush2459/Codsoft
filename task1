@@ -1,0 +1,43 @@
+def get_travel_details():
+    date = input("Enter the date of travel: ").strip()
+    start = input("Enter the start location: ").strip()
+    destination = input("Enter the destination: ").strip()
+    if not date or not start or not destination:
+        print("All fields are mandatory. Please enter valid details.")
+        return get_travel_details()
+    return date, start, destination
+
+def book_ride():
+    travel_mode = input("Do you want to travel by road or air? ").lower()
+    
+    if travel_mode == "road":
+        print("Below options are available:\n1. Car\n2. Bus\n3. Train")
+        option = input("Which roadway option will you choose? ").capitalize()
+        prices = {"Car": 10000, "Bus": 7500, "Train": 5500}
+        if option in prices:
+            date, start, destination = get_travel_details()
+            print(f"Thank you for traveling with us! Your ticket is booked on {date} from {start} to {destination}.")
+            print(f"Your booking amount is {prices[option]}")
+        else:
+            print("Invalid option. Please choose a valid roadway option.")
+    
+    elif travel_mode == "air":
+        print("Below options are available:\n1. Economy\n2. Premium Economy\n3. Business\n4. First Class")
+        option = input("Which airways option will you choose? ").title()
+        prices = {
+            "Economy": 25000,
+            "Premium Economy": 40000,
+            "Business": 75000,
+            "First Class": 150000,
+        }
+        if option in prices:
+            date, start, destination = get_travel_details()
+            print(f"Thank you for traveling with us! Your ticket is booked on {date} from {start} to {destination}.")
+            print(f"Your booking amount is {prices[option]}")
+        else:
+            print("Invalid option. Please choose a valid airways option.")
+    
+    else:
+        print("Invalid travel mode. Please enter 'road' or 'air'.")
+
+book_ride()
